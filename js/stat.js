@@ -29,14 +29,14 @@ function renderStatistics(ctx, names, times) {
     time = times[i];
     var height = step * time;
     if (name === 'Вы') {
-      ctx.fillStyle='rgba(255, 0, 0, 1)';
-    }
+      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+      }
     else {
-      ctx.fillStyle='rgba(0, 0, 255, ' + Math.random().toFixed(1) + ')';
+      ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random().toFixed(1) + ')';
     }
     ctx.fillRect(histoX + columnIndent * i, bottomY - height, 40, height);
     ctx.fillStyle = '#000';
     ctx.fillText( time.toFixed(0), histoX + columnIndent * i + 8, bottomY - height - 6);
     ctx.fillText( name, histoX + columnIndent * i, bottomY + 18);
-      }
-    }
+  }
+}
