@@ -15,8 +15,8 @@ function renderStatistics(ctx, names, times) {
     var time = times[i];
     if (time > max) {
       max = time;
-        }
-      }
+    }
+  }
 
   var histoHeight = 160;   // максим. столбик
   var histoX = 40;      // начальная координата x
@@ -24,17 +24,19 @@ function renderStatistics(ctx, names, times) {
   var columnIndent = 90;  //  ширина  столбика + отступ
   var bottomY = 240;   // низ гистограммы
 
-  for (var i = 0; i < times.length; i++) {
+  for (i = 0; i < times.length; i++) {
     var name = names[i];
     time = times[i];
     var height = step * time;
-    if (name === 'Вы') { ctx.fillStyle='rgba(255, 0, 0, 1)'; }
-      else {
-        ctx.fillStyle='rgb(0, 0, ' +( 255 * Math.random().toFixed(1)).toFixed(0) + ')';
-        }
+    if (name === 'Вы') {
+      ctx.fillStyle='rgba(255, 0, 0, 1)';
+    }
+    else {
+      ctx.fillStyle='rgba(0, 0, 255, ' + Math.random().toFixed(1) + ')';
+    }
     ctx.fillRect(histoX + columnIndent * i, bottomY - height, 40, height);
     ctx.fillStyle = '#000';
-    ctx.fillText( time.toFixed(0), histoX + columnIndent * i + 8,          bottomY - height - 6);
+    ctx.fillText( time.toFixed(0), histoX + columnIndent * i + 8, bottomY - height - 6);
     ctx.fillText( name, histoX + columnIndent * i, bottomY + 18);
       }
     }
