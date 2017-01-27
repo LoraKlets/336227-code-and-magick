@@ -5,14 +5,14 @@ var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 
-setupOpen.addEventListener('click', function() {
+setupOpen.addEventListener('click', function () {
   setup.classList.remove('invisible');
 });
 
 // При нажатии на крестик внутри оверлея
 // .setup-close добавить класс invisible
 // элементу .setup
-setupClose.addEventListener('click', function() {
+setupClose.addEventListener('click', function () {
   setup.classList.add('invisible');
 });
 // Валидация ввода имени персонажа средствами HTML5
@@ -35,7 +35,7 @@ var wizardCoatColors = [
 ];
 
 
-wizardCoat.addEventListener('click', function() {
+wizardCoat.addEventListener('click', function () {
   var colorNumber = Math.floor(Math.random() * wizardCoatColors.length);
   wizardCoat.style.fill = wizardCoatColors[colorNumber];
 });
@@ -53,11 +53,11 @@ var wizardEyesColors = [
 ];
 
 var colorNumberY = 0;
-wizardEyes.addEventListener('click', function() {
-    colorNumberY ++;
-    if (colorNumberY == wizardEyesColors.length) {colorNumberY = 0};
-    wizardEyes.style.fill = wizardEyesColors[colorNumberY];
-})
+wizardEyes.addEventListener('click', function () {
+  colorNumberY++;
+  if (colorNumberY == wizardEyesColors.length) { colorNumberY = 0; }
+  wizardEyes.style.fill = wizardEyesColors[colorNumberY];
+});
 
 // При нажатии на блок .setup-fireball-wrap меняется цвет
 // файербола на следующий в последовательности цветов
@@ -72,8 +72,8 @@ var fireballColors = [
 ];
 
 var colorFireballNumber = 0;
-  setupFireball.addEventListener('click', function() {
-  colorFireballNumber++;
-  if (colorFireballNumber == fireballColors.length) {colorFireballNumber = 0};
-  setupFireball.style.background = fireballColors[colorFireballNumber];
-})
+setupFireball.addEventListener('click', function () {
+    colorFireballNumber++;
+    if (colorFireballNumber === fireballColors.length) { colorFireballNumber = 0; }
+    setupFireball.style.background = fireballColors[colorFireballNumber];
+  });
