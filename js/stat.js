@@ -1,3 +1,4 @@
+'use strict';
 function renderStatistics(ctx, names, times) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.fillRect(20, 30, 320, 270);
@@ -39,3 +40,5 @@ function renderStatistics(ctx, names, times) {
     ctx.fillText(name, histoX + columnIndent * i, bottomY + 18);
   }
 }
+var canvas = document.querySelector('canvas');
+renderStatistics(canvas.getContext('2d'), ['Иван', 'Игнат', 'Вы'], [20.32, 40.15, 4.28]);

@@ -1,4 +1,4 @@
-use strict;
+'use strict';
 // При нажатии на элемент .setup-open нужно
 // убрать класс invisible у элемента .setup
 var setup = document.querySelector('.setup');
