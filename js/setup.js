@@ -4,16 +4,71 @@
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
+var ENTER_KEY_CODE = 13;
+var ESCAPE_KEY_CODE = 27;
 
-setupOpen.addEventListener('click', function() {
+var isActivateEvent = function (evt) {
+  return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
+};
+var setupKeydownHandler = function (evt) {
+  if (evt.keyCode === ESCAPE_KEY_CODE) {
+    setup.classList.add('invisible');
+  }
+};
+var handleBtnKeyPress = function (evt) {
+// Check to see if space or enter were pressed
+  if (evt.keyCode === 32 || evt.keyCode === 13) {
+ // Prevent the default action to stop scrolling when space is pressed
+    evt.preventDefault();
+    toggleBtn(evt.target);
+  }
+};
+
+var handleBtnClick = function (evt) {
+  toggleBtn(evt.target);
+};
+
+function toggleBtn(element) {
+  // Check to see if the button is pressed
+  var pressed = (element.getAttribute('aria-pressed') === 'true');
+  // Change aria-pressed to the opposite state
+  element.setAttribute('aria-pressed', !pressed);
+}
+
+
+
+var showSetupElement = function () {
   setup.classList.remove('invisible');
+  document.addEventListener('keydown', setupKeydownHandler);
+};
+var hideSetupElement = function () {
+  setup.classList.add('invisible');
+  document.removeEventListener('keydown', setupKeydownHandler);
+};
+
+setupOpen.addEventListener('click', function (evt) {
+  showSetupElement();
+  handleBtnClick(evt);
+});
+setupOpen.addEventListener('keydown', function (evt) {
+  if (isActivateEvent(evt)) {
+    showSetupElement();
+    handleBtnKeyPress(evt);
+  }
 });
 
-// При нажатии на крестик внутри оверлея
-// .setup-close добавить класс invisible
-// элементу .setup
-setupClose.addEventListener('click', function() {
-  setup.classList.add('invisible');
+// При нажатии на крестик внутри оверлея .setup-close
+// добавить класс invisible элементу .setup
+
+setupClose.addEventListener('click', function (evt) {
+  hideSetupElement();
+  handleBtnClick(evt);
+});
+setupClose.addEventListener('keydown', function (evt) {
+  if (isActivateEvent(evt)) {
+    hideSetupElement();
+    handleBtnKeyPress(evt);
+  }
 });
 // Валидация ввода имени персонажа средствами HTML5
 var wizardName = document.querySelector('.setup-user-name');
@@ -35,7 +90,7 @@ var wizardCoatColors = [
 ];
 
 
-wizardCoat.addEventListener('click', function() {
+wizardCoat.addEventListener('click', function () {
   var colorNumber = Math.floor(Math.random() * wizardCoatColors.length);
   wizardCoat.style.fill = wizardCoatColors[colorNumber];
 });
@@ -53,11 +108,11 @@ var wizardEyesColors = [
 ];
 
 var colorNumberY = 0;
-wizardEyes.addEventListener('click', function() {
-    colorNumberY ++;
-    if (colorNumberY == wizardEyesColors.length) {colorNumberY = 0};
-    wizardEyes.style.fill = wizardEyesColors[colorNumberY];
-})
+wizardEyes.addEventListener('click', function () {
+  colorNumberY++;
+  if (colorNumberY === wizardEyesColors.length) { colorNumberY = 0; }
+  wizardEyes.style.fill = wizardEyesColors[colorNumberY];
+});
 
 // При нажатии на блок .setup-fireball-wrap меняется цвет
 // файербола на следующий в последовательности цветов
@@ -72,8 +127,9 @@ var fireballColors = [
 ];
 
 var colorFireballNumber = 0;
-  setupFireball.addEventListener('click', function() {
+setupFireball.addEventListener('click', function () {
   colorFireballNumber++;
-  if (colorFireballNumber == fireballColors.length) {colorFireballNumber = 0};
+  if (colorFireballNumber === fireballColors.length) {
+    colorFireballNumber = 0; }
   setupFireball.style.background = fireballColors[colorFireballNumber];
-})
+});
