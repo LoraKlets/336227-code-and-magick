@@ -12,28 +12,28 @@ var isActivateEvent = function (evt) {
 };
 var setupKeydownHandler = function (evt) {
   if (evt.keyCode === ESCAPE_KEY_CODE) {
-     setup.classList.add('invisible');
+    setup.classList.add('invisible');
   }
 };
 var handleBtnKeyPress = function (evt) {
 // Check to see if space or enter were pressed
   if (evt.keyCode === 32 || evt.keyCode === 13) {
  // Prevent the default action to stop scrolling when space is pressed
-      evt.preventDefault();
-     toggleBtn(evt.target);
-   }
-}
+    evt.preventDefault();
+    toggleBtn(evt.target);
+  }
+};
+
 var handleBtnClick = function (evt) {
-    console.log(evt.target);
- // toggleBtn(evt.target);
-}
+  toggleBtn(evt.target);
+};
 
 function toggleBtn(element) {
   // Check to see if the button is pressed
-  var pressed = (element.getAttribute("aria-pressed") === "true");
+  var pressed = (element.getAttribute('aria-pressed') === 'true');
   // Change aria-pressed to the opposite state
-  element.setAttribute("aria-pressed", !pressed);
-};
+  element.setAttribute('aria-pressed', !pressed);
+}
 
 
 
@@ -41,14 +41,14 @@ var showSetupElement = function () {
   setup.classList.remove('invisible');
   document.addEventListener('keydown', setupKeydownHandler);
 };
-var hideSetupElement = function() {
+var hideSetupElement = function () {
   setup.classList.add('invisible');
   document.removeEventListener('keydown', setupKeydownHandler);
 };
 
 setupOpen.addEventListener('click', function (evt) {
-   showSetupElement();
-   handleBtnClick(evt);
+  showSetupElement();
+  handleBtnClick(evt);
 });
 setupOpen.addEventListener('keydown', function (evt) {
   if (isActivateEvent(evt)) {
@@ -66,8 +66,8 @@ setupClose.addEventListener('click', function (evt) {
 });
 setupClose.addEventListener('keydown', function (evt) {
   if (isActivateEvent(evt)) {
-     hideSetupElement();
-     handleBtnKeyPress(evt);
+    hideSetupElement();
+    handleBtnKeyPress(evt);
   }
 });
 // Валидация ввода имени персонажа средствами HTML5
@@ -110,7 +110,7 @@ var wizardEyesColors = [
 var colorNumberY = 0;
 wizardEyes.addEventListener('click', function () {
   colorNumberY++;
-  if (colorNumberY == wizardEyesColors.length) { colorNumberY = 0; }
+  if (colorNumberY === wizardEyesColors.length) { colorNumberY = 0; }
   wizardEyes.style.fill = wizardEyesColors[colorNumberY];
 });
 
@@ -128,7 +128,8 @@ var fireballColors = [
 
 var colorFireballNumber = 0;
 setupFireball.addEventListener('click', function () {
-    colorFireballNumber++;
-    if (colorFireballNumber === fireballColors.length) { colorFireballNumber = 0; }
-    setupFireball.style.background = fireballColors[colorFireballNumber];
-  });
+  colorFireballNumber++;
+  if (colorFireballNumber === fireballColors.length) {
+    colorFireballNumber = 0; }
+  setupFireball.style.background = fireballColors[colorFireballNumber];
+});
