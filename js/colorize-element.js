@@ -13,5 +13,5 @@ window.colorizeElement = function (element, colors, property) {
     if (isActivateEvent(evt)) {
       element.style[property] = window.utils.getRandomElementExcept(colors, currentColor);
     }
-  })
-}
+  });
+};

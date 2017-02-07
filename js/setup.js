@@ -118,7 +118,7 @@ var fireballColors = [
   '#e848d5',
   '#e6e848'
 ];
-window.colorizeElement(setupFireball, fireballColors, 'background' );
+window.colorizeElement(setupFireball, fireballColors, 'background');
 /* var colorFireballNumber = 0;
 setupFireball.addEventListener('click', function () {
   colorFireballNumber++;

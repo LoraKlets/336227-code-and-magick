@@ -1,14 +1,14 @@
 'use strict';
 window.utils = {
-  getRandomElement : function (array) {
-  var randomElementIndex = Math.floor(Math.random()*array.length);
-  return array[randomElementIndex];
+  getRandomElement: function (array) {
+    var randomElementIndex = Math.floor(Math.random() * array.length);
+    return array[randomElementIndex];
   },
-  getRandomElementExcept : function (array,currentElement) {
+  getRandomElementExcept: function (array, currentElement) {
     var newColor;
     while (!newColor || newColor === currentElement) {
-      newColor = utils.getRandomElement (array);
+      newColor = window.utils.getRandomElement(array);
     }
     return newColor;
   }
-}
+};
