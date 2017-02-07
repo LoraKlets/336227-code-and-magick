@@ -35,8 +35,6 @@ function toggleBtn(element) {
   element.setAttribute('aria-pressed', !pressed);
 }
 
-
-
 var showSetupElement = function () {
   setup.classList.remove('invisible');
   document.addEventListener('keydown', setupKeydownHandler);
@@ -78,8 +76,8 @@ wizardName.maxLength = 10;
 
 // При нажатии на волшебника меняется цвет его
 // одежды на случайный
-var wizard = document.querySelector('#wizard');
-var wizardCoat = wizard.querySelector('#wizard-coat');
+
+var wizardCoat = document.querySelector('#wizard-coat');
 var wizardCoatColors = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
@@ -88,17 +86,12 @@ var wizardCoatColors = [
   'rgb(215, 210, 55)',
   'rgb(0, 0, 0)'
 ];
-
-
-wizardCoat.addEventListener('click', function () {
-  var colorNumber = Math.floor(Math.random() * wizardCoatColors.length);
-  wizardCoat.style.fill = wizardCoatColors[colorNumber];
-});
+window.colorizeElement(wizardCoat, wizardCoatColors, 'fill');
 
 // При нажатии на блок #wizard-eyes  цвет его глаз
 // меняется  на следующий в массиве wizardEyesColors
 
-var wizardEyes = wizard.querySelector('#wizard-eyes');
+var wizardEyes = document.querySelector('#wizard-eyes');
 var wizardEyesColors = [
   'black',
   'red',
@@ -106,13 +99,13 @@ var wizardEyesColors = [
   'yellow',
   'green'
 ];
-
-var colorNumberY = 0;
+window.colorizeElement(wizardEyes, wizardEyesColors, 'fill');
+/* var colorNumberY = 0;
 wizardEyes.addEventListener('click', function () {
   colorNumberY++;
   if (colorNumberY === wizardEyesColors.length) { colorNumberY = 0; }
   wizardEyes.style.fill = wizardEyesColors[colorNumberY];
-});
+}); */
 
 // При нажатии на блок .setup-fireball-wrap меняется цвет
 // файербола на следующий в последовательности цветов
@@ -125,11 +118,11 @@ var fireballColors = [
   '#e848d5',
   '#e6e848'
 ];
-
-var colorFireballNumber = 0;
+window.colorizeElement(setupFireball, fireballColors, 'background' );
+/* var colorFireballNumber = 0;
 setupFireball.addEventListener('click', function () {
   colorFireballNumber++;
   if (colorFireballNumber === fireballColors.length) {
     colorFireballNumber = 0; }
   setupFireball.style.background = fireballColors[colorFireballNumber];
-});
+}); */
