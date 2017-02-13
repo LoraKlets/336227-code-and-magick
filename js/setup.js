@@ -100,12 +100,6 @@ var wizardEyesColors = [
   'green'
 ];
 window.colorizeElement(wizardEyes, wizardEyesColors, 'fill');
-/* var colorNumberY = 0;
-wizardEyes.addEventListener('click', function () {
-  colorNumberY++;
-  if (colorNumberY === wizardEyesColors.length) { colorNumberY = 0; }
-  wizardEyes.style.fill = wizardEyesColors[colorNumberY];
-}); */
 
 // При нажатии на блок .setup-fireball-wrap меняется цвет
 // файербола на следующий в последовательности цветов
@@ -119,10 +113,3 @@ var fireballColors = [
   '#e6e848'
 ];
 window.colorizeElement(setupFireball, fireballColors, 'background');
-/* var colorFireballNumber = 0;
-setupFireball.addEventListener('click', function () {
-  colorFireballNumber++;
-  if (colorFireballNumber === fireballColors.length) {
-    colorFireballNumber = 0; }
-  setupFireball.style.background = fireballColors[colorFireballNumber];
-}); */
