@@ -1,7 +1,7 @@
 'use strict';
 // При нажатии на элемент .setup-open нужно
 // убрать класс invisible у элемента .setup
-var setup = document.querySelector('.setup');
+// var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open-icon');
 
 var handleBtnKeyPress = function (evt) {
@@ -30,7 +30,7 @@ setupOpen.addEventListener('click', function (evt) {
 });
 var focusSetupButton = function () {
   setupOpen.focus();
-}
+};
 setupOpen.addEventListener('keydown', function (evt) {
   if (window.utils.isActivateEvent(evt)) {
     window.enableSetup(focusSetupButton);
@@ -58,10 +58,10 @@ var wizardCoatColors = [
   'rgb(215, 210, 55)',
   'rgb(0, 0, 0)'
 ];
-var onColorizeElement = function (element,colors,property) {
-    var currentColor = element.style[property];
-    element.style[property] = window.utils.getRandomElementExcept(colors, currentColor);
-}
+var onColorizeElement = function (element, colors, property) {
+  var currentColor = element.style[property];
+  element.style[property] = window.utils.getRandomElementExcept(colors, currentColor);
+};
 window.colorizeElement(wizardCoat, wizardCoatColors, 'fill', onColorizeElement);
 // При нажатии на блок #wizard-eyes  цвет его глаз
 // меняется  на следующий в массиве wizardEyesColors
@@ -74,7 +74,7 @@ var wizardEyesColors = [
   'yellow',
   'green'
 ];
-window.colorizeElement(wizardEyes, wizardEyesColors, 'fill',onColorizeElement);
+window.colorizeElement(wizardEyes, wizardEyesColors, 'fill', onColorizeElement);
 
 // При нажатии на блок .setup-fireball-wrap меняется цвет
 // файербола на следующий в последовательности цветов

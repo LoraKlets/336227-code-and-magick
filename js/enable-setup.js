@@ -1,7 +1,7 @@
 'use strict';
 window.enableSetup = (function () {
   var setup = document.querySelector('.setup');
-  var setupOpen = document.querySelector('.setup-open');
+  // var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
   var onSetupClose;
   var ESCAPE_KEY_CODE = 27;
@@ -20,7 +20,7 @@ window.enableSetup = (function () {
     document.removeEventListener('keydown', setupKeydownHandler);
 
     if (typeof onSetupClose === 'function') {
-        onSetupClose();
+      onSetupClose();
     }
   };
   var onKeyDown = function (evt) {
@@ -33,5 +33,5 @@ window.enableSetup = (function () {
     setupClose.addEventListener('keydown', onKeyDown);
     setupClose.addEventListener('click', closeSetup);
     onSetupClose = cb;
-  }
+  };
 })();
