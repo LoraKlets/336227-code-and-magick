@@ -2,19 +2,8 @@
 // При нажатии на элемент .setup-open нужно
 // убрать класс invisible у элемента .setup
 var setup = document.querySelector('.setup');
-var setupOpen = document.querySelector('.setup-open');
-var setupClose = setup.querySelector('.setup-close');
-var ENTER_KEY_CODE = 13;
-var ESCAPE_KEY_CODE = 27;
+var setupOpen = document.querySelector('.setup-open-icon');
 
-var isActivateEvent = function (evt) {
-  return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
-};
-var setupKeydownHandler = function (evt) {
-  if (evt.keyCode === ESCAPE_KEY_CODE) {
-    setup.classList.add('invisible');
-  }
-};
 var handleBtnKeyPress = function (evt) {
 // Check to see if space or enter were pressed
   if (evt.keyCode === 32 || evt.keyCode === 13) {
@@ -35,39 +24,22 @@ function toggleBtn(element) {
   element.setAttribute('aria-pressed', !pressed);
 }
 
-var showSetupElement = function () {
-  setup.classList.remove('invisible');
-  document.addEventListener('keydown', setupKeydownHandler);
-};
-var hideSetupElement = function () {
-  setup.classList.add('invisible');
-  document.removeEventListener('keydown', setupKeydownHandler);
-};
-
 setupOpen.addEventListener('click', function (evt) {
-  showSetupElement();
+  window.enableSetup(null);
   handleBtnClick(evt);
 });
+var focusSetupButton = function () {
+  setupOpen.focus();
+}
 setupOpen.addEventListener('keydown', function (evt) {
-  if (isActivateEvent(evt)) {
-    showSetupElement();
+  if (window.utils.isActivateEvent(evt)) {
+    window.enableSetup(focusSetupButton);
     handleBtnKeyPress(evt);
   }
 });
 
 // При нажатии на крестик внутри оверлея .setup-close
 // добавить класс invisible элементу .setup
-
-setupClose.addEventListener('click', function (evt) {
-  hideSetupElement();
-  handleBtnClick(evt);
-});
-setupClose.addEventListener('keydown', function (evt) {
-  if (isActivateEvent(evt)) {
-    hideSetupElement();
-    handleBtnKeyPress(evt);
-  }
-});
 // Валидация ввода имени персонажа средствами HTML5
 var wizardName = document.querySelector('.setup-user-name');
 
@@ -86,8 +58,11 @@ var wizardCoatColors = [
   'rgb(215, 210, 55)',
   'rgb(0, 0, 0)'
 ];
-window.colorizeElement(wizardCoat, wizardCoatColors, 'fill');
-
+var onColorizeElement = function (element,colors,property) {
+    var currentColor = element.style[property];
+    element.style[property] = window.utils.getRandomElementExcept(colors, currentColor);
+}
+window.colorizeElement(wizardCoat, wizardCoatColors, 'fill', onColorizeElement);
 // При нажатии на блок #wizard-eyes  цвет его глаз
 // меняется  на следующий в массиве wizardEyesColors
 
@@ -99,7 +74,7 @@ var wizardEyesColors = [
   'yellow',
   'green'
 ];
-window.colorizeElement(wizardEyes, wizardEyesColors, 'fill');
+window.colorizeElement(wizardEyes, wizardEyesColors, 'fill',onColorizeElement);
 
 // При нажатии на блок .setup-fireball-wrap меняется цвет
 // файербола на следующий в последовательности цветов
@@ -112,4 +87,4 @@ var fireballColors = [
   '#e848d5',
   '#e6e848'
 ];
-window.colorizeElement(setupFireball, fireballColors, 'background');
+window.colorizeElement(setupFireball, fireballColors, 'background', onColorizeElement);

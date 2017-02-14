@@ -1,13 +1,15 @@
 'use strict';
-window.colorizeElement = (function (element, colors, property) {
-  var currentColor = element.style[property];
-  element.addEventListener('click', function () {
-    element.style[property] = window.utils.getRandomElementExcept(colors, currentColor);
+window.colorizeElement = (function (element, colors, property, cb) {
+  element.addEventListener('click',function () {
+    if (typeof cb === 'function'){
+      cb (element, colors, property);
+    }
   });
-
   element.addEventListener('keydown', function (evt) {
     if (window.utils.isActivateEvent(evt)) {
-      element.style[property] = window.utils.getRandomElementExcept(colors, currentColor);
-    }
+      if (typeof cb === 'function'){
+        cb (element, colors, property);
+      }
+    };
   });
 });
